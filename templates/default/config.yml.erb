@@ -1,0 +1,48 @@
+---
+# Local_route is the IP address of a well known server on your network, it
+# is used to choose the right ip address (think of hosts that have multiple nics
+# and IP addresses assigned to them) of the host running the Health Manager. Default
+# value of nil, should work in most cases.
+local_route: <%= node[:cloudfoundry_health_manager][:local_route] %>
+
+# NATS message bus URI
+mbus: nats://<%= node[:nats_server][:user] %>:<%= node[:nats_server][:password] %>@<%= node[:cloudfoundry_common][:nats_server][:host] %>:<%= node[:nats_server][:port] %>/
+logging:
+  level: <%= node[:cloudfoundry_health_manager][:log_level] %>
+  file:  <%= node[:cloudfoundry_health_manager][:log_file] %>
+pid: <%= node[:cloudfoundry_health_manager][:pid_file] %>
+rails_environment: production
+
+# This database is shared with the cloud controller.
+database_environment: # replaces database.yml
+  production:
+    database: <%= node[:cloudfoundry_cloud_controller][:database][:name] %>
+    host: <%= node[:cloudfoundry_cloud_controller][:database][:host] %>
+    port: 5432
+    encoding: utf8
+    username: postgres
+    password: <%= node[:postgresql][:password][:postgres] %>
+    adapter: postgresql
+    timeout: 2000
+    template: template0 # Required for utf8 encoding
+
+intervals:
+  # Interval for collecting statistics about this cloudfoundry instance.
+  # Amongst other things, data collected includes number of users, number of
+  # applications and memory usage.
+  database_scan: <%= node[:cloudfoundry_health_manager][:database_scan] %>
+  # Time to wait before starting analysis for stopped applications.
+  droplet_lost: <%= node[:cloudfoundry_health_manager][:droplet_lost] %>
+  # Interval between scans for analysis of applications.
+  droplets_analysis: <%= node[:cloudfoundry_health_manager][:droplets_analysis] %>
+  # An application is deemed to be flapping if it is found to be in a crashed
+  # state (after a restart following every crash) for more than "flapping_death"
+  # number of times in an interval that is "flapping_timeout" long.
+  flapping_death: <%= node[:cloudfoundry_health_manager][:flapping_death] %>
+  flapping_timeout: <%= node[:cloudfoundry_health_manager][:flapping_timeout] %>
+  # Time to wait before trying to restart an application after a crash is
+  # detected
+  restart_timeout: <%= node[:cloudfoundry_health_manager][:restart_timeout] %>
+  # Time to wait before analyzing the state of an application that has been
+  # started/restarted
+  stable_state: <%= node[:cloudfoundry_health_manager][:stable_state] %>
