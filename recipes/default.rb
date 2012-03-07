@@ -31,7 +31,7 @@ bash "install cloudfoundry-health_manager gems" do
   cwd  File.join(node[:cloudfoundry_common][:vcap][:install_path], "health_manager")
   code "#{File.join(ruby_path, "bundle")} install --without=test --local"
   subscribes :run, resources(:git => node[:cloudfoundry_common][:vcap][:install_path])
-#  action :nothing
+  action :nothing
 end
 
 template config_file do
