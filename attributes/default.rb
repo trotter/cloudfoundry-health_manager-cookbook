@@ -1,3 +1,5 @@
+include_attribute "cloudfoundry-common"
+
 default[:cloudfoundry_health_manager][:local_router] = nil
 
 default[:cloudfoundry_health_manager][:log_level] = "info"
