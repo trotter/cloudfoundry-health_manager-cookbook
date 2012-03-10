@@ -1,7 +1,7 @@
 Description
 ===========
 
-Installed and configures a CloudFoundry Health Manager
+Installs and configures a CloudFoundry Health Manager.
 
 Requirements
 ============
@@ -24,7 +24,7 @@ trotter's cloudfoundry-common cookbook.
 Usage
 =====
 
-This recipe will install the CloudFoundry Health Manager on the target
+This cookbook will install the CloudFoundry Health Manager on the target
 node along with the necessary configuration files and init scripts to
 run it. Because the database required by a Health Manager is shared with
 the CloudController, you need to use the
