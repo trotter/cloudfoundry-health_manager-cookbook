@@ -39,7 +39,6 @@ as your Cloud Controller, typical usage in a recipe will look like so:
 Attributes
 ==========
 
-* `cloudfoundry_health_manager[:local_router]` - (TODO) trotter: Find out what this does. Default is `nil`.
 * `cloudfoundry_health_manager[:log_level]` - The Health Manager's log level. Default is `info"`.
 * `cloudfoundry_health_manager[:log_file]` - Where to write the Health Manager's logs. Default is `File.join(node[:cloudfoundry_common][:log_dir], "health_manager.log")`.
 * `cloudfoundry_health_manager[:pid_file]` - Where to write the Health Manager's pid file. Default is `File.join(node[:cloudfoundry_common][:pid_dir], "health_manager.pid")`.

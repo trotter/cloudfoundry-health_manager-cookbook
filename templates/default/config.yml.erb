@@ -3,7 +3,7 @@
 # is used to choose the right ip address (think of hosts that have multiple nics
 # and IP addresses assigned to them) of the host running the Health Manager. Default
 # value of nil, should work in most cases.
-local_route: <%= node[:cloudfoundry_health_manager][:local_route] %>
+local_route: <%= node[:cloudfoundry_common][:local_route] %>
 
 # NATS message bus URI
 mbus: nats://<%= node[:nats_server][:user] %>:<%= node[:nats_server][:password] %>@<%= node[:cloudfoundry_common][:nats_server][:host] %>:<%= node[:nats_server][:port] %>/

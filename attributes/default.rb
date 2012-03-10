@@ -1,8 +1,5 @@
 include_attribute "cloudfoundry-common"
 
-# (TODO) trotter: Find out what this does.
-default[:cloudfoundry_health_manager][:local_router] = nil
-
 # The Health Manager's log level.
 default[:cloudfoundry_health_manager][:log_level] = "info"
 
